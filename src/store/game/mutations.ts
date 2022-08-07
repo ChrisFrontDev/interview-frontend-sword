@@ -20,10 +20,8 @@ const mutation: MutationTree<GameState> = {
       alert("cant play on this cell because the game is over");
       return;
     }
-
     const newBoard = [...state.board];
     newBoard[x][y] = state.currentPlayer;
-
     const winner = isWinner(state.currentPlayer, state.board)
       ? state.currentPlayer
       : isAllCellsFilled(newBoard)
@@ -32,7 +30,6 @@ const mutation: MutationTree<GameState> = {
     state.board = newBoard;
     state.currentPlayer = state.currentPlayer === "X" ? "O" : "X";
     state.winner = winner;
-    console.log("ok");
   },
 };
 
