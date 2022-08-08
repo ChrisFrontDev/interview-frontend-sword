@@ -1,18 +1,43 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <div>
+      <header-section />
+      <game-section />
+      <statistics-section />
+      <footer-section />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { useStore } from "vuex";
 
-export default defineComponent({
-  name: "HomeView",
+import HeaderSection from "@/components/sections/HeaderSection.vue";
+import FooterSection from "@/components/sections/FooterSection.vue";
+import GameSection from "@/components/sections/GameSection.vue";
+import StatisticsSection from "@/components/sections/StatisticsSection.vue";
+
+export default {
   components: {
-    HelloWorld,
+    StatisticsSection,
+    GameSection,
+    FooterSection,
+    HeaderSection,
   },
-});
+
+  setup() {
+    const store = useStore();
+    store.dispatch("game/createBoard", {
+      boardGameType: 3,
+    });
+
+    return {};
+  },
+};
 </script>
+
+<style lang="scss" scoped>
+.home {
+  width: 100%;
+}
+</style>
